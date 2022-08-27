@@ -1,0 +1,48 @@
+2022-07-02 15:48:27.946 [main] INFO  Starter.start(47) - start begin.....
+2022-07-02 15:48:30.033 [main] INFO  DruidDataSource.init(995) - {dataSource-1} inited
+2022-07-02 15:48:30.426 [main] INFO  SchedulerTask4TiDB.setApplicationContext(50) - 连接的数据库信息 jdbc:mysql://ip.address.of.tidb:tidb_port/dbname?characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai&useConfigs=maxPerformance
+2022-07-02 15:48:30.457 [main] DEBUG DataSourceUtils.doGetConnection(116) - Fetching JDBC Connection from DataSource
+2022-07-02 15:48:30.520 [main] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: select @@version 
+2022-07-02 15:48:30.551 [main] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 
+2022-07-02 15:48:30.614 [main] DEBUG BaseJdbcLogger.debug(139) - <==      Total: 1
+2022-07-02 15:48:30.614 [main] INFO  SchedulerTask4TiDB.setApplicationContext(53) - 数据库版本 5.7.25-TiDB-v4.0.12-1-g5d483c4a7
+2022-07-02 15:48:30.630 [main] DEBUG DataSourceUtils.doGetConnection(116) - Fetching JDBC Connection from DataSource
+2022-07-02 15:48:30.677 [main] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: select tidb_version() 
+2022-07-02 15:48:30.677 [main] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 
+2022-07-02 15:48:30.708 [main] DEBUG BaseJdbcLogger.debug(139) - <==      Total: 1
+2022-07-02 15:48:30.708 [main] INFO  SchedulerTask4TiDB.setApplicationContext(56) - TiDB数据库版本 Release Version: v4.0.12-1-g5d483c4a7
+Edition: Community
+Git Commit Hash: 5d483c4a78b62d5b20347931ea7587b0deda3f9c
+Git Branch: hotfix-4.0.12-collation
+UTC Build Time: 2021-04-27 02:50:31
+GoVersion: go1.16.3
+Race Enabled: false
+TiKV Min Version: v3.0.0-60965b006877ca7234adaced7890d7b029ed1306
+Check Table Before Drop: false
+2022-07-02 15:48:30.708 [main] DEBUG DataSourceUtils.doGetConnection(116) - Fetching JDBC Connection from DataSource
+2022-07-02 15:48:30.755 [main] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: select @@transaction_isolation 
+2022-07-02 15:48:30.755 [main] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 
+2022-07-02 15:48:30.787 [main] DEBUG BaseJdbcLogger.debug(139) - <==      Total: 1
+2022-07-02 15:48:30.787 [main] INFO  SchedulerTask4TiDB.setApplicationContext(57) - 事务隔离级别 REPEATABLE-READ
+2022-07-02 15:48:30.802 [main] INFO  BaseLockService.<init>(51) - 当前进程信息 49312@hostname
+2022-07-02 15:48:30.818 [main] INFO  SchedulerTask4TiDB.setLockService(82) - 当前使用的事务的模式 LockService_1_Pessimistic [使用悲观事务]
+2022-07-02 15:48:30.818 [main] DEBUG DataSourceUtils.doGetConnection(116) - Fetching JDBC Connection from DataSource
+2022-07-02 15:48:30.849 [main] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: update task_lock set lock_flag = ?, end_time = now() where task_name = ? 
+2022-07-02 15:48:30.865 [main] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 0(Integer), SchedulerTask4TiDB(String)
+2022-07-02 15:48:30.912 [main] DEBUG BaseJdbcLogger.debug(139) - <==    Updates: 1
+2022-07-02 15:48:31.085 [main] INFO  Starter.start(54) - start success!
+2022-07-02 15:48:40.050 [scheduler-1] INFO  BaseLockService.lock(56) - 开始尝试获取锁 [使用悲观事务]
+2022-07-02 15:48:40.050 [scheduler-1] DEBUG AbstractPlatformTransactionManager.getTransaction(370) - Creating new transaction with name [null]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-07-02 15:48:40.081 [scheduler-1] DEBUG DataSourceTransactionManager.doBegin(267) - Acquired Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@283ccff1] for JDBC transaction
+2022-07-02 15:48:40.081 [scheduler-1] DEBUG DataSourceTransactionManager.doBegin(285) - Switching JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@283ccff1] to manual commit
+2022-07-02 15:48:40.128 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: BEGIN PESSIMISTIC 
+2022-07-02 15:48:40.128 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 
+2022-07-02 15:48:40.160 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - <==    Updates: 0
+2022-07-02 15:48:40.160 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: select task_name, lock_flag, begin_time, end_time, process_info, now() as db_current_date from task_lock where task_name = ? for update 
+2022-07-02 15:48:40.160 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: SchedulerTask4TiDB(String)
+2022-07-02 15:48:40.285 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - <==      Total: 1
+2022-07-02 15:48:40.301 [scheduler-1] INFO  BaseLockService.doLock(146) - 定时任务状态为已锁定，获取锁失败 TaskLock{taskName='SchedulerTask4TiDB', lockFlag=1, beginTime=Sat Jul 02 15:48:45 CST 2022, endTime=Sat Jul 02 15:48:36 CST 2022, dbCurrentDate=Sat Jul 02 15:48:45 CST 2022, processInfo='49804@hostname'}
+2022-07-02 15:48:40.301 [scheduler-1] DEBUG AbstractPlatformTransactionManager.processCommit(740) - Initiating transaction commit
+2022-07-02 15:48:40.301 [scheduler-1] DEBUG DataSourceTransactionManager.doCommit(330) - Committing JDBC transaction on Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@283ccff1]
+2022-07-02 15:48:40.364 [scheduler-1] DEBUG DataSourceTransactionManager.doCleanupAfterCompletion(389) - Releasing JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@283ccff1] after transaction
+2022-07-02 15:48:40.364 [scheduler-1] INFO  BaseLockService.lock(78) - 尝试获取锁结束 未获取到锁

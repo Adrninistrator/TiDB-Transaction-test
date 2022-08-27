@@ -1,0 +1,72 @@
+2022-07-03 22:46:13.735 [main] INFO  Starter.start(47) - start begin.....
+2022-07-03 22:46:15.337 [main] INFO  DruidDataSource.init(995) - {dataSource-1} inited
+2022-07-03 22:46:15.686 [main] INFO  SchedulerTask4TiDB.setApplicationContext(50) - 连接的数据库信息 jdbc:mysql://ip.address.of.tidb:tidb_port/dbname?characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai&useConfigs=maxPerformance
+2022-07-03 22:46:15.701 [main] DEBUG DataSourceUtils.doGetConnection(116) - Fetching JDBC Connection from DataSource
+2022-07-03 22:46:15.844 [main] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: select @@version 
+2022-07-03 22:46:15.876 [main] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 
+2022-07-03 22:46:15.924 [main] DEBUG BaseJdbcLogger.debug(139) - <==      Total: 1
+2022-07-03 22:46:15.939 [main] INFO  SchedulerTask4TiDB.setApplicationContext(53) - 数据库版本 5.7.25-TiDB-v4.0.12-1-g5d483c4a7
+2022-07-03 22:46:15.939 [main] DEBUG DataSourceUtils.doGetConnection(116) - Fetching JDBC Connection from DataSource
+2022-07-03 22:46:15.971 [main] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: select tidb_version() 
+2022-07-03 22:46:15.971 [main] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 
+2022-07-03 22:46:16.019 [main] DEBUG BaseJdbcLogger.debug(139) - <==      Total: 1
+2022-07-03 22:46:16.019 [main] INFO  SchedulerTask4TiDB.setApplicationContext(56) - TiDB数据库版本 Release Version: v4.0.12-1-g5d483c4a7
+Edition: Community
+Git Commit Hash: 5d483c4a78b62d5b20347931ea7587b0deda3f9c
+Git Branch: hotfix-4.0.12-collation
+UTC Build Time: 2021-04-27 02:50:31
+GoVersion: go1.16.3
+Race Enabled: false
+TiKV Min Version: v3.0.0-60965b006877ca7234adaced7890d7b029ed1306
+Check Table Before Drop: false
+2022-07-03 22:46:16.019 [main] DEBUG DataSourceUtils.doGetConnection(116) - Fetching JDBC Connection from DataSource
+2022-07-03 22:46:16.050 [main] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: select @@transaction_isolation 
+2022-07-03 22:46:16.050 [main] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 
+2022-07-03 22:46:16.082 [main] DEBUG BaseJdbcLogger.debug(139) - <==      Total: 1
+2022-07-03 22:46:16.082 [main] INFO  SchedulerTask4TiDB.setApplicationContext(57) - 事务隔离级别 REPEATABLE-READ
+2022-07-03 22:46:16.082 [main] INFO  BaseLockService.<init>(53) - 当前进程信息 52484@hostname
+2022-07-03 22:46:16.114 [main] INFO  SchedulerTask4TiDB.setLockService(82) - 当前使用的事务的模式 LockService_3a_OptimisticNoAutoRetry [使用乐观事务，禁用自动重试]
+2022-07-03 22:46:16.114 [main] DEBUG DataSourceUtils.doGetConnection(116) - Fetching JDBC Connection from DataSource
+2022-07-03 22:46:16.146 [main] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: update task_lock set lock_flag = ?, end_time = now() where task_name = ? 
+2022-07-03 22:46:16.146 [main] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 0(Integer), SchedulerTask4TiDB(String)
+2022-07-03 22:46:16.177 [main] DEBUG BaseJdbcLogger.debug(139) - <==    Updates: 1
+2022-07-03 22:46:16.257 [main] INFO  Starter.start(54) - start success!
+2022-07-03 22:46:20.079 [scheduler-1] INFO  BaseLockService.lock(58) - 开始尝试获取锁 [使用乐观事务，禁用自动重试]
+2022-07-03 22:46:20.079 [scheduler-1] DEBUG AbstractPlatformTransactionManager.getTransaction(370) - Creating new transaction with name [null]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-07-03 22:46:20.110 [scheduler-1] DEBUG DataSourceTransactionManager.doBegin(267) - Acquired Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@3d953075] for JDBC transaction
+2022-07-03 22:46:20.110 [scheduler-1] DEBUG DataSourceTransactionManager.doBegin(285) - Switching JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@3d953075] to manual commit
+2022-07-03 22:46:20.142 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: select @@tidb_disable_txn_auto_retry 
+2022-07-03 22:46:20.142 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 
+2022-07-03 22:46:20.174 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - <==      Total: 1
+2022-07-03 22:46:20.174 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: set @@tidb_disable_txn_auto_retry = on 
+2022-07-03 22:46:20.174 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 
+2022-07-03 22:46:20.206 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - <==    Updates: 0
+2022-07-03 22:46:20.221 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: select @@tidb_disable_txn_auto_retry 
+2022-07-03 22:46:20.221 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 
+2022-07-03 22:46:20.253 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - <==      Total: 1
+2022-07-03 22:46:20.253 [scheduler-1] INFO  BaseLockService.tiDBDisableAutoRetryOn(217) - tiDBDisableAutoRetry before 0
+2022-07-03 22:46:20.253 [scheduler-1] INFO  BaseLockService.tiDBDisableAutoRetryOn(218) - tiDBDisableAutoRetry after 1
+2022-07-03 22:46:20.253 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: select task_name, lock_flag, begin_time, end_time, process_info, now() as db_current_date from task_lock where task_name = ? for update 
+2022-07-03 22:46:20.253 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: SchedulerTask4TiDB(String)
+2022-07-03 22:46:20.285 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - <==      Total: 1
+2022-07-03 22:46:20.285 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: update task_lock set lock_flag = ?, begin_time = now(), process_info = ? where task_name = ? 
+2022-07-03 22:46:20.285 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 1(Integer), 52484@hostname(String), SchedulerTask4TiDB(String)
+2022-07-03 22:46:20.317 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - <==    Updates: 1
+2022-07-03 22:46:20.317 [scheduler-1] INFO  BaseLockService.lockRecordNoCheck(244) - 修改记录状态为锁定，更新行数 1 SchedulerTask4TiDB
+2022-07-03 22:46:20.317 [scheduler-1] INFO  BaseLockService.doLock(175) - 定时任务状态为未锁定 SchedulerTask4TiDB
+2022-07-03 22:46:20.317 [scheduler-1] DEBUG AbstractPlatformTransactionManager.processCommit(740) - Initiating transaction commit
+2022-07-03 22:46:20.317 [scheduler-1] DEBUG DataSourceTransactionManager.doCommit(330) - Committing JDBC transaction on Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@3d953075]
+2022-07-03 22:46:20.396 [scheduler-1] DEBUG DataSourceTransactionManager.doCleanupAfterCompletion(389) - Releasing JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@3d953075] after transaction
+2022-07-03 22:46:20.396 [scheduler-1] INFO  BaseLockService.lock(83) - 尝试获取锁结束 获取到锁
+2022-07-03 22:46:20.396 [scheduler-1] INFO  SchedulerTask4TiDB.customHandle(103) - 开始执行
+2022-07-03 22:46:20.396 [scheduler-1] DEBUG DataSourceUtils.doGetConnection(116) - Fetching JDBC Connection from DataSource
+2022-07-03 22:46:20.428 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: select @@tidb_disable_txn_auto_retry 
+2022-07-03 22:46:20.428 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 
+2022-07-03 22:46:20.459 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - <==      Total: 1
+2022-07-03 22:46:20.459 [scheduler-1] INFO  SchedulerTask4TiDB.customHandle(108) - tiDBDisableAutoRetry 1
+2022-07-03 22:46:22.489 [scheduler-1] INFO  SchedulerTask4TiDB.customHandle(112) - 执行结束
+2022-07-03 22:46:22.489 [scheduler-1] DEBUG DataSourceUtils.doGetConnection(116) - Fetching JDBC Connection from DataSource
+2022-07-03 22:46:22.521 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==>  Preparing: update task_lock set lock_flag = ?, end_time = now() where task_name = ? 
+2022-07-03 22:46:22.521 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - ==> Parameters: 0(Integer), SchedulerTask4TiDB(String)
+2022-07-03 22:46:22.553 [scheduler-1] DEBUG BaseJdbcLogger.debug(139) - <==    Updates: 1
+2022-07-03 22:46:22.553 [scheduler-1] INFO  BaseLockService.unlock(98) - 修改记录状态为解锁，更新行数 1 SchedulerTask4TiDB

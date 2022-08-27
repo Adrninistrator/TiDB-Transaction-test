@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configuration>
+<Configuration status="info" monitorInterval="5">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{1}(%F:%L) - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="console"/>
+        </Root>
+
+        <Logger name="test.tidb.lock.dao" level="debug" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+        <Logger name="org.springframework.transaction.support" level="debug" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+        <Logger name="org.springframework.jdbc.datasource" level="debug" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+<!--        <Logger name="druid.sql.DataSource" level="debug" additivity="false">-->
+<!--            <AppenderRef ref="console"/>-->
+<!--        </Logger>-->
+
+<!--        <Logger name="druid.sql.Connection" level="debug" additivity="false">-->
+<!--            <AppenderRef ref="console"/>-->
+<!--        </Logger>-->
+
+<!--        <Logger name="druid.sql.Statement" level="debug" additivity="false">-->
+<!--            <AppenderRef ref="console"/>-->
+<!--        </Logger>-->
+
+<!--        <Logger name="druid.sql.ResultSet" level="debug" additivity="false">-->
+<!--            <AppenderRef ref="console"/>-->
+<!--        </Logger>-->
+    </Loggers>
+</Configuration>
